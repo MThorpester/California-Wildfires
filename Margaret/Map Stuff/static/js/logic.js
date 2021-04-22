@@ -1,3 +1,8 @@
+// function createCounties(geofile) {
+//   var counties = geofile;
+//   return(counties);
+// };
+
 function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Markers2016, Markers2015, Markers2014, Markers2013) {
 
   // Create the outdoors tile layer that will be the background of our map
@@ -23,8 +28,20 @@ function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Marke
     "Street Map": streetmap
   };
 
-  // Create an overlayMaps object to hold the earthquakes layer
+//   // Use this link to get the county boundaries data.
+// var countylink = "static/data/california-counties2.geojson";
+// console.log("county link is: ", countylink);
+// // Get the counties GeoJSON file
+// d3.json(countylink).then(function(data) {
+//   var counties = createCounties(data);
+  
+// });
+//   console.log("Counties is: ",counties);
+
+  // Create an overlayMaps object to hold the various overlay layers for the map (county boundaries and years)
+  counties = L.layerGroup();
   var overlayMaps = {
+    "Show County Boundaries": counties, 
     "Other Wildfires": wildfireMarkers,
     "2019 Wildfires": Markers2019,
     "2018 Wildfires": Markers2018,
@@ -40,14 +57,31 @@ function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Marke
   var map = L.map("map-id", {
     center: [38.58, -121.49],
     zoom: 7,
-    layers: [outdoorsmap, wildfireMarkers, Markers2019, Markers2018, Markers2017, Markers2016, Markers2015, Markers2014, Markers2013]
+    layers: [outdoorsmap, wildfireMarkers, Markers2019, Markers2018, Markers2017, Markers2016, Markers2015, Markers2014, Markers2013, counties]
   });
 
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(map);
+
+  var countyLink = "static/data/calicounties.geojson";
+  d3.json(countyLink).then(function(countyData) {
+    L.geoJson(countyData, {
+      style:{
+        opacity: 0.75,
+        weight: 2,
+        color: "#FFF",
+        fillcolor: "62B934",
+        fillOpacity: 0.0
+      }
+    }).addTo(counties);
+    counties.addTo(map);
+  })
 }
+
+
+
 
 function createMarkers(response) {
   // Designate a custom icon
@@ -144,7 +178,7 @@ function createMarkers(response) {
   // console.log("Markers2013 after the Switch statement: ", Markers2013.length);
 
   
-  // Create a layer group made from the wildfire marker arrays, pass it into the createMap function
+  // Create layer groups made from the wildfire marker arrays, pass them into the createMap function
   createMap(L.layerGroup(wildfireMarkers),L.layerGroup(Markers2019),L.layerGroup(Markers2018),
   L.layerGroup(Markers2017),L.layerGroup(Markers2016), L.layerGroup(Markers2015), L.layerGroup(Markers2014), L.layerGroup(Markers2013));
 };
