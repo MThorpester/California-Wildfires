@@ -107,26 +107,6 @@ function createMarkers(response) {
   // var earthquakeMarker = L.marker([earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]], {icon: myIcon})
   // .bindPopup("<h3><h3>Place: " + earthquake.properties.place + "</h3>");
  
-  var bigfireicon = L.ExtraMarkers.icon({
-      icon: "ion-flame",
-      iconColor: "yellow",
-      markerColor: "red",
-      shape: "circle"
-    })
-
-  var mediumfireicon = L.ExtraMarkers.icon({
-    icon: "ion-flame",
-    iconColor: "yellow",
-    markerColor: "orange",
-    shape: "circle"
-  })
-  var smallfireicon = L.ExtraMarkers.icon({
-    icon: "ion-flame",
-    iconColor: "orange",
-    markerColor: "white",
-    shape: "circle"
-  }) 
-
   // Pull the features off of response.data
   var wildfire_data = response.features;
   console.log("wildfire is: ", wildfire_data);
@@ -151,31 +131,9 @@ function createMarkers(response) {
    
     // For each wildfire, create a marker with the icon color based on the acreage burned
     // Bind a popup with the wildfire's details 
-    if (wildfire.properties.AcresBurned <= 100) {
-      var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
-        icon: smallfireicon});
-    } else if (wildfire.properties.AcresBurned <= 50000) {
-      var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
-        icon: mediumfireicon});
-    } else {
-      var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
-        icon: bigfireicon});
-    }
-
-    // var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
-    //   icon: smallfireicon})
-    //   .bindPopup("Name: " + wildfire.properties.Name + "<br>Latitude: " + wildfire.geometry.coordinates[1] + " Longitude: " + wildfire.geometry.coordinates[0] +
-    //   "<br>Archived Year: " + wildfire.properties.ArchiveYear);
-
-
-      // L.marker([51.941196,4.512291], {icon: redMarker}).addTo(map);
-      //  // Create a new marker with the appropriate icon and coordinates
-      //  var newMarker = L.marker([station.lat, station.lon], {
-      //   icon: icons[stationStatusCode]
-      // });
-
-      // // Add the new marker to the appropriate layer
-      // newMarker.addTo(layers[stationStatusCode]);
+    var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]])
+      .bindPopup("Name: " + wildfire.properties.Name + "<br>Latitude: " + wildfire.geometry.coordinates[1] + " Longitude: " + wildfire.geometry.coordinates[0] +
+      "<br>Archived Year: " + wildfire.properties.ArchiveYear);
     
     // Add the marker to the array for the year the wildfire was recorded
     switch(wildfire.properties.ArchiveYear) {
