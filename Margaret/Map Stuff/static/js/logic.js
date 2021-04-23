@@ -1,7 +1,9 @@
-// function createCounties(geofile) {
-//   var counties = geofile;
-//   return(counties);
-// };
+function getColor(d) {
+  return d > 50000   ? '#FD8D3C' :
+         d > 1000   ? '#FEB24C' :
+         d > 100   ? '#FED976' :
+                    '#FFEDA0';
+}
 
 function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Markers2016, Markers2015, Markers2014, Markers2013) {
 
@@ -60,6 +62,46 @@ function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Marke
     layers: [outdoorsmap, wildfireMarkers, Markers2019, Markers2018, Markers2017, Markers2016, Markers2015, Markers2014, Markers2013, counties]
   });
 
+  //  // Add the legend to the map (this adds text but color isn't working)
+  // var legend = L.control({position: 'bottomright'});
+  // legend.onAdd = function (map) {
+
+  //     var div = L.DomUtil.create('div', 'info legend'),
+  //         labels = ['<strong>Acres Burned</strong>'];
+  //         grades = [0, 100, 10000, 50000];
+
+  //     // loop through our density intervals and generate a label with a colored square for each interval
+  //     for (var i = 0; i < grades.length; i++) {
+  //         div.innerHTML +=
+  //             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+  //             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+  //     }
+
+  //     return div;
+  // };
+
+  // legend.addTo(map);
+
+  var legend = L.control({position: 'bottomright'});
+
+  legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        header = ['<strong>Acres Burned</strong>'],
+        grades = ["Small (< 100 Acres Burned)", "Medium (101-10,000 Acres Burned)","Large (> 10,000 Acres Burned)"],
+        labels = ["small_fire.png", "medium_fire.png", "large_fire.png"];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            grades[i] + (" <img src="+ labels[i] +" height='30' width='30'>") +'<br>';
+    }
+
+    return div;
+};
+
+legend.addTo(map);
+
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
@@ -81,6 +123,26 @@ function createMap(wildfireMarkers, Markers2019, Markers2018, Markers2017, Marke
 }
 
 
+// var legend = L.control({position: 'bottomright'});
+//     legend.onAdd = function () {
+
+//     var div = L.DomUtil.create('div', 'info legend');
+//     labels = ['<strong>Acres Burned</strong>'],
+//     categories = ['> 10,000','101-10,000', '< 100'];
+
+//     for (var i = 0; i < categories.length; i++) {
+
+//             div.innerHTML += 
+//             labels.push(
+//                 '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+//             (categories[i] ? categories[i] : '+'));
+
+//         }
+//         div.innerHTML = labels.join('<br>');
+//     return div;
+//     };
+
+//     legend.addTo(map);
 
 
 function createMarkers(response) {
@@ -122,8 +184,8 @@ function createMarkers(response) {
   })
   var smallfireicon = L.ExtraMarkers.icon({
     icon: "ion-flame",
-    iconColor: "orange",
-    markerColor: "white",
+    iconColor: "yellow",
+    markerColor: "yellow",
     shape: "circle"
   }) 
 
@@ -154,18 +216,25 @@ function createMarkers(response) {
     if (wildfire.properties.AcresBurned <= 100) {
       var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
         icon: smallfireicon});
-    } else if (wildfire.properties.AcresBurned <= 50000) {
+    } else if (wildfire.properties.AcresBurned <= 10000) {
       var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
         icon: mediumfireicon});
     } else {
       var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
         icon: bigfireicon});
     }
+    
+    var start = wildfire.properties.Started;
+    var startDate = (start.slice(0,10));
+    var end = wildfire.properties.Extinguished;
+    var endDate = (start.slice(0,10));
+
+    wildfireMarker.bindPopup("Name: " + wildfire.properties.Name + "<br>County: " + wildfire.properties.Counties + "<br>Acres burned: " + wildfire.properties.AcresBurned +
+      "<br>Date started: " + startDate + "<br>Date extinguished: " + endDate);
 
     // var wildfireMarker = L.marker([wildfire.geometry.coordinates[1], wildfire.geometry.coordinates[0]], {
     //   icon: smallfireicon})
-    //   .bindPopup("Name: " + wildfire.properties.Name + "<br>Latitude: " + wildfire.geometry.coordinates[1] + " Longitude: " + wildfire.geometry.coordinates[0] +
-    //   "<br>Archived Year: " + wildfire.properties.ArchiveYear);
+    
 
 
       // L.marker([51.941196,4.512291], {icon: redMarker}).addTo(map);
@@ -217,6 +286,7 @@ function createMarkers(response) {
   // console.log("index value is ", index);
 };
    
+
   // console.log("earthquakeMarkers: ", earthquakeMarkers);
   // console.log("Markers2013 after the Switch statement: ", Markers2013.length);
 
