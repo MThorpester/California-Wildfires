@@ -82,6 +82,127 @@ FROM
 ) final
 ORDER BY final.county_code::int, year;
 
+CREATE VIEW vw_county_stats_yearly_incident_level
+AS
+SELECT final.*
+FROM 
+(
+	SELECT 
+	   a.*
+	FROM 
+	(
+		SELECT 
+			cc.county_code
+		   ,cc.county_description
+		   ,archive_year AS year
+		   ,CASE
+		     WHEN w.acres_burned <= 100 THEN 'Small'
+		     WHEN w.acres_burned <= 10000 THEN 'Medium'
+		     WHEN w.acres_burned > 10000 THEN 'Large'
+		    END AS incident_level
+		   ,count(*) AS total_fires
+		   ,SUM(w.acres_burned) AS acres_burned
+		   ,AVG(duration_interval) AS avg_duration
+		   ,SUM(fatalities) AS total_fatalities
+		   ,SUM(structures_destroyed) AS structures_destroyed
+		   ,SUM(structures_damaged) AS structures_damaged
+		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+		FROM public.wildfire_incidents w
+		INNER JOIN 
+			 public.county_codes cc
+		 ON cc.county_code = split_part(w.county_ids,',',1)
+		GROUP BY cc.county_code, cc.county_description,archive_year
+		         ,CASE
+		     		WHEN w.acres_burned <= 100 THEN 'Small'
+		     		WHEN w.acres_burned <= 10000 THEN 'Medium'
+		     		WHEN w.acres_burned > 10000 THEN 'Large'
+		    		END 
+	) a
 
-select * from vw_COUNTY_CODES;
+	UNION
+	
+	SELECT 
+	   a.*
+	FROM 
+	(
+		SELECT 
+			'0' AS county_code
+		   ,'Overall' AS county_description
+		   ,archive_year AS year
+		   ,CASE
+		     WHEN w.acres_burned <= 100 THEN 'Small'
+		     WHEN w.acres_burned <= 10000 THEN 'Medium'
+		     WHEN w.acres_burned > 10000 THEN 'Large'
+		    END AS incident_level		
+		   ,count(*) AS total_fires
+		   ,SUM(w.acres_burned) AS acres_burned
+		   ,AVG(duration_interval) AS avg_duration
+		   ,SUM(fatalities) AS total_fatalities
+		   ,SUM(structures_destroyed) AS structures_destroyed
+		   ,SUM(structures_damaged) AS structures_damaged
+		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+		FROM public.wildfire_incidents w
+		INNER JOIN 
+			 public.county_codes cc
+		 ON cc.county_code = split_part(w.county_ids,',',1)
+		GROUP BY archive_year
+				,CASE
+				   WHEN w.acres_burned <= 100 THEN 'Small'
+				   WHEN w.acres_burned <= 10000 THEN 'Medium'
+				   WHEN w.acres_burned > 10000 THEN 'Large'
+				 END
+	) a
+) final
+ORDER BY final.county_code::int, year;
+
+
+CREATE VIEW vw_county_stats_overall
+AS
+SELECT final.*
+FROM 
+(
+	SELECT 
+	   a.*
+	FROM 
+	(
+		SELECT 
+			cc.county_code
+		   ,cc.county_description
+		   ,count(*) AS total_fires
+		   ,SUM(w.acres_burned) AS acres_burned
+		   ,AVG(duration_interval) AS avg_duration
+		   ,SUM(fatalities) AS total_fatalities
+		   ,SUM(structures_destroyed) AS structures_destroyed
+		   ,SUM(structures_damaged) AS structures_damaged
+		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+		FROM public.wildfire_incidents w
+		INNER JOIN 
+			 public.county_codes cc
+		 ON cc.county_code = split_part(w.county_ids,',',1)
+		GROUP BY cc.county_code, cc.county_description
+	) a
+
+	UNION
+	
+	SELECT 
+	   a.*
+	FROM 
+	(
+		SELECT 
+			'0' AS county_code
+		   ,'Overall' AS county_description
+		   ,count(*) AS total_fires
+		   ,SUM(w.acres_burned) AS acres_burned
+		   ,AVG(duration_interval) AS avg_duration
+		   ,SUM(fatalities) AS total_fatalities
+		   ,SUM(structures_destroyed) AS structures_destroyed
+		   ,SUM(structures_damaged) AS structures_damaged
+		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+		FROM public.wildfire_incidents w
+		INNER JOIN 
+			 public.county_codes cc
+		 ON cc.county_code = split_part(w.county_ids,',',1)
+	) a
+) final
+ORDER BY final.county_code::int;
 
