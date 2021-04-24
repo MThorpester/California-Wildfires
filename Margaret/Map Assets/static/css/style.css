@@ -1,11 +1,33 @@
+/* change the navbar homepage (brand) text color */
+.navbar-custom .navbar-text {
+  color: rgb(238, 76, 12);
+}
+
+/* change the navbar link text color */
+.navbar-custom .navbar-nav .nav-link {
+  
+  color: #f1b309;
+}
+/* change the color of active or hovered links in the navbar */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: rgb(250, 56, 8);
+}
+
+body {
+  height: 100%;
+  padding-top: 60px; /* Added padding so navbar doesn't cut off map */
+  margin: 0;
+}
+
 html,
-body,
 #map-id {
   height: 100%;
   padding: 0;
   margin: 0;
 }
 
+/* Commented out because I'm setting this in the javascript code that builds the map legend
 /* .icon {
   font-size: 25px;
 } */
@@ -23,22 +45,3 @@ body,
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.legend .low {
-  color: #ec8a2e;
-}
-
-.legend .empty {
-  color: #a0353a;
-}
-
-.legend .coming-soon {
-  color: #f4ba48;
-}
-
-.legend .healthy {
-  color: #1b904f;
-}
-
-.legend .out-of-order {
-  color: #007dff;
-}
