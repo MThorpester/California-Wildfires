@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>California Wildfires Dashboard - Homepage</title>
+
+   <!-- Bootstrap core CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+   <!-- My CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body>
+  <header>
+    <header>
+      <!-- Intro settings -->
+      <style>
+        /* Default height for small devices */
+        #firehome {
+          height: 400px;
+        }
+    
+        /* Height for devices larger than 992px */
+        @media (min-width: 992px) {
+          #firehome {
+            height: 600px;
+          }
+        }
+      </style>
+    <!-- Fixed navbar - removed navbar-dark -->
+    <nav class="navbar navbar-expand-md fixed-top bg-dark navbar-custom">
+      <a class="navbar-brand navbar-custom navbar-text active" href="#"><b>California Wildfires </b><span class="sr-only">(current)</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Drought</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Background image -->
+  <div
+    id="firehome"
+    class="p-5 text-center bg-image"
+    style="background-image: url('static/images/FirefighterPic.jpg');
+          background-size: contain;
+          height:750px">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0);">
+      <div class="d-flex justify-content-center align-items-center">
+        <div class="text-white">
+          <h1 class="mb-3">Have California Wildfires become larger, more frequent and more devastating?</h1>
+          <h4 class="mb-3">Explore this dashboard to find out!</h4>
+          <a class="btn btn-outline-light btn-lg" href="https://github.com/MThorpester/COVID-Vaccinations-ETL-Project" role="button"
+            >Learn more about the project</a
+          >
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <!-- Background image -->
+</header>
+    
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer>
+
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+   <!-- D3 -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- MomentJS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+  
+  <!-- My JavaScript -->
+  <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
+
+</body>
+
+</html>
