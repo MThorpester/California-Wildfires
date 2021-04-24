@@ -17,7 +17,7 @@ app.use(
 );
 
 app.get('/', (request, response) => {
-    response.json({ info: 'Node.js, Express, and Postgres API' })
+    response.json({ info: 'Node.js, Express, and Postgres Wildfire API'})
   });
 
 
@@ -25,4 +25,7 @@ app.get('/', (request, response) => {
   //   console.log(`App running on port ${port}.`)
   // });
 
-  app.get('/detail', db.getDetail)
+  app.get('/detail', db.getDetail);
+  app.get('/county_codes',db.getCountyCodes);
+  app.get('/yearly_stats_detail',db.getYearlyStats);
+  app.get('/yearly_stats_county/:county',db.getYearlyStatsByCounty);
