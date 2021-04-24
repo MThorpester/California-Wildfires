@@ -45,3 +45,5 @@ app.get('/', (request, response) => {
   app.get('/county_codes',db.getCountyCodes);
   app.get('/yearly_stats_detail',db.getYearlyStats);
   app.get('/yearly_stats_county/:county',db.getYearlyStatsByCounty);
+  app.get('/yearly_stats_incident_level',db.getYearlyStatsIncidents);
+  app.get('/overall_stats',db.getOverallStats);

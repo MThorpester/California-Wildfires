@@ -47,11 +47,33 @@ const getDetail = (request, response) => {
       })
   };
 
+  const getYearlyStatsIncidents = (request, response) => {
+    const county = request.params.county;
+    pool.query('SELECT * FROM public.vw_county_stats_yearly_incident_level ORDER BY county_code::integer ASC,year,incident_level',
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).json(results.rows)
+      })
+  };
 
+  const getOverallStats = (request, response) => {
+    const county = request.params.county;
+    pool.query('SELECT * FROM public.vw_county_stats_overall ORDER BY county_code::integer ASC',
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).json(results.rows)
+      })
+  };
 
   module.exports = {
     getDetail,
     getCountyCodes,
     getYearlyStats,
-    getYearlyStatsByCounty
+    getYearlyStatsByCounty,
+    getYearlyStatsIncidents,
+    getOverallStats
   };
