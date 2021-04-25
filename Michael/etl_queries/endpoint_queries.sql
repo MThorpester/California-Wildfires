@@ -82,13 +82,14 @@ FROM
 ) final
 ORDER BY final.county_code::int, year;
 
-CREATE VIEW vw_county_stats_yearly_incident_level
+CREATE OR REPLACE VIEW vw_county_stats_yearly_incident_level
 AS
 SELECT final.*
 FROM 
 (
 	SELECT 
-	   a.*
+	   a.*,
+	   ROUND((total_fires / SUM(total_fires) OVER (PARTITION BY a.county_code, a.year) * 1.00) * 100,2) AS incident_pct
 	FROM 
 	(
 		SELECT 
@@ -122,7 +123,8 @@ FROM
 	UNION
 	
 	SELECT 
-	   a.*
+	   a.*,
+	   ROUND((total_fires / SUM(total_fires) OVER (PARTITION BY a.year) * 1.00) * 100,2) AS incident_pct
 	FROM 
 	(
 		SELECT 
@@ -206,3 +208,14 @@ FROM
 ) final
 ORDER BY final.county_code::int;
 
+
+update public.wildfire_incidents
+set incident_level =
+CASE
+		     WHEN acres_burned <= 100 THEN 'Small'
+		     WHEN acres_burned <= 10000 THEN 'Medium'
+		     WHEN acres_burned > 10000 THEN 'Large'
+		    END 
+
+
+select * from public.vw_county_stats_yearly_incident_level
