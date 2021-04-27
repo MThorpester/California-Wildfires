@@ -195,7 +195,8 @@ function BuildCharts(id) {
         y: incidents_small,
         text:incident_small_pct_increase,
         name: "Small",
-        type: "bar"
+        type: "bar",
+        marker: {color: "#ffb727"}
       };
 
       var trace_medium = {
@@ -203,7 +204,8 @@ function BuildCharts(id) {
         y: incidents_medium,
         text:incident_medium_pct_increase,
         name: "Medium",
-        type: "bar"
+        type: "bar",
+        marker: {color: "#ff7f27"}
       };     
     
       var trace_large = {
@@ -211,7 +213,8 @@ function BuildCharts(id) {
         y: incidents_large,
         text: incident_large_pct_increase,
         name: "Large",
-        type: "bar"
+        type: "bar",
+        marker: {color: "#88001b"}
       };     
       var data_stack = [trace_small,trace_medium,trace_large];
 

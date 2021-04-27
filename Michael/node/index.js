@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 8080
 const db = require('./queries')
+const path = require('path')
 
 var httpServer = http.createServer(app);
 
@@ -33,7 +34,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (request, response) => {
-    response.json({ info: 'Node.js, Express, and Postgres Wildfire API'})
+    // response.json({ info: 'Node.js, Express, and Postgres Wildfire API'})
+    response.sendFile(path.join(__dirname + '/endpoint.html'));
   });
 
 

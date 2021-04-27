@@ -15,6 +15,7 @@ AS
   ORDER BY A.county_code::integer ASC
 );
 
+
 CREATE OR REPLACE VIEW vw_county_stats_yearly
 AS
 SELECT final.*
@@ -42,6 +43,7 @@ FROM
 		   ,SUM(structures_destroyed) AS structures_destroyed
 		   ,SUM(structures_damaged) AS structures_damaged
 		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+           ,ROUND(AVG(w.acres_burned),2) AS avg_acres_burned
 		FROM public.wildfire_incidents w
 		INNER JOIN 
 			 public.county_codes cc
@@ -73,6 +75,7 @@ FROM
 		   ,SUM(structures_destroyed) AS structures_destroyed
 		   ,SUM(structures_damaged) AS structures_damaged
 		   ,SUM(CASE WHEN major_incident = 'TRUE' THEN 1 ELSE 0 END) AS major_incidents
+ 		   ,ROUND(AVG(w.acres_burned),2) AS avg_acres_burned
 		FROM public.wildfire_incidents w
 		INNER JOIN 
 			 public.county_codes cc
