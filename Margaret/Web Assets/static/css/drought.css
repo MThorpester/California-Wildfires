@@ -1,0 +1,25 @@
+
+
+/* change the navbar homepage (brand) text color */
+.navbar-custom .navbar-text {
+  color: rgb(238, 76, 12);
+}
+
+/* change the navbar link text color */
+.navbar-custom .navbar-nav .nav-link {
+  
+  color: #f1b309;
+}
+/* change the color of active or hovered links in the navbar */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: rgb(250, 56, 8);
+}
+
+body {
+  height: 100%;
+  padding-top: 60px; /* Added padding so navbar doesn't cut off selection tool */
+  margin: 0;
+}
+
+
