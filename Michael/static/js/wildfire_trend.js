@@ -7,7 +7,7 @@ var county_data = [];
 var wildfire_year_data = [];
 var wildfire_year_incident_data = [];
 var overall_stats_data = [];
-
+var fatalitiesg = [];
 //Drop down related filters
 var optionitem = "";
 
@@ -86,6 +86,10 @@ function BuildCharts(id) {
     //Variables for Series and Axis Arrays
     var years = [];
     var acres_burned = [];
+    var avg_acres_burned = [];
+    var fatalities = [];
+    var structures_destroyed = [];
+    var structures_damaged = [];
     var years_small = [];
     var acres_burned_pct_increase = [];
     var incidents_small = [];
@@ -96,6 +100,7 @@ function BuildCharts(id) {
     var years_large = [];
     var incidents_large = [];
     var incident_large_pct_increase = [];
+    
     //------------------------------------------
     // Create the Metadata Card
     //------------------------------------------
@@ -157,7 +162,18 @@ function BuildCharts(id) {
    years = wildfire_year_td.map(e=>{return e.year}); 
    acres_burned = wildfire_year_td.map(e=>{return e.acres_burned});
    acres_burned_increase_rate = wildfire_year_td.map(e=>{return e.acres_burned_increase_rate + "%"}); 
-   console.log(acres_burned_increase_rate)
+   
+   //Build Avaeage Bunred Acres Dataset
+   avg_acres_burned = wildfire_year_td.map(e=>{return e.avg_acres_burned});
+
+   //Build Grouped Bar Chart 
+   fatalities = wildfire_year_td.map(e=>{return e.total_fatalities});
+   structures_damaged = wildfire_year_td.map(e=>{return e.structures_damaged});
+   structures_destroyed = wildfire_year_td.map(e=>{return e.structures_destroyed});
+
+   console.log(fatalities);
+   console.log(fatalitiesg);
+   
 
     //------------------------------------------
     // Chart Configuration 
@@ -188,6 +204,25 @@ function BuildCharts(id) {
     };
 
     var data_bar = [trace_bar,trace_line];
+      //Average Acreage Burned Bar Chart Configuration
+      var trace_avg_bar = {
+        x: years,
+        y: avg_acres_burned,
+        type: "bar",
+        name: "Average Acres Burned"
+      };
+
+
+    var layout_avg_bar = {
+      title: "Average Acres Burned By Year",
+      xaxis: { title: "Year",
+               type:"Category" },
+      yaxis: { title: "Average Acres Burned",
+               type:"Linear",
+               }
+    };
+
+    var data_avg_bar = [trace_avg_bar];
  
     //Stacked Bar Chart Configuration
     var trace_small = {
@@ -228,12 +263,47 @@ function BuildCharts(id) {
         barmode: 'stack'
       };
  
+    //Grouped Bar Chart Configuration
+    var trace_fatalities = {
+      x: years,
+      y: fatalities,
+      name: "Fatalities",
+      type: "bar"
+    };
+
+    var trace_structures_damaged = {
+      x: years,
+      y: structures_damaged,
+      name: "Structures Damaged",
+      type: "bar"
+    };
+
+    var trace_structures_destroyed = {
+      x: years,
+      y: structures_destroyed,
+      name: "Structures Destroyed",
+      type: "bar"
+    };
+
+    var data_destruction = [trace_fatalities,trace_structures_damaged,trace_structures_destroyed];
+
+    var layout_destruction = {
+      title: "Destruction Metrics By Year",
+      xaxis: { title: "Year",
+               type:"Category" },
+      yaxis: { title: "Volume",
+               type:"log"
+               }
+    };
+   
 
     //------------------------------------------
     // Rebuild Bar Chart
     //------------------------------------------
       Plotly.react("stackbar", data_stack, layout_stack);
-      Plotly.react("bar", data_bar, layout_bar);       
+      Plotly.react("bar", data_bar, layout_bar);  
+      Plotly.react("bar-avg", data_avg_bar, layout_avg_bar); 
+      Plotly.react("cluster",data_destruction,layout_destruction);     
 };
 
 init();
