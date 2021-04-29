@@ -24,11 +24,11 @@ FROM
 	SELECT 
 	   a.*
 	  ,COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0) AS acres_burned_prior_year
-	  ,CASE
+	  ,ROUND(CASE
 		 WHEN a.acres_burned = 0 OR COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0) = 0  THEN 0
 		 ELSE
-			(a.acres_burned - COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0))  / (COALESCE(a.acres_burned,0) * 1.0000)
-	   END * 100 AS acres_burned_increase_rate
+			(a.acres_burned - COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0))  / (COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0) * 1.0000)
+	   END * 100,2) AS acres_burned_increase_rate
 	  ,ROW_NUMBER() OVER (PARTITION BY a.year ORDER BY a.acres_burned DESC) acres_burned_year_rank
 	FROM 
 	(
@@ -56,11 +56,11 @@ FROM
 	SELECT 
 	   a.*
 	  ,COALESCE(LAG(a.acres_burned) OVER (ORDER BY a.year),0) AS acres_burned_prior_year
-	  ,CASE
+	  ,ROUND(CASE
 		 WHEN a.acres_burned = 0 OR COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0) = 0 THEN 0
 		ELSE
-			(a.acres_burned - COALESCE(LAG(a.acres_burned) OVER (ORDER BY a.year),0))  / (COALESCE(a.acres_burned,0) * 1.0000)
-	   END * 100 AS acres_burned_increase_rate
+			(a.acres_burned - COALESCE(LAG(a.acres_burned) OVER (ORDER BY a.year),0))  / (COALESCE(LAG(a.acres_burned) OVER (PARTITION BY a.county_code ORDER BY a.year),0) * 1.0000)
+	   END * 100,2) AS acres_burned_increase_rate
 	  ,ROW_NUMBER() OVER ( ORDER BY a.acres_burned DESC) acres_burned_year_rank
 	FROM 
 	(
@@ -221,4 +221,6 @@ CASE
 		    END 
 
 
-select * from public.vw_county_stats_yearly
+select * from public.vw_county_stats_yearly;
+
+select * from vw_county_stats_yearly;
