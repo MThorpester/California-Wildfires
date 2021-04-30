@@ -42,46 +42,18 @@ Several different PostgreSQL views are exposed by the NodeJS app as API endpoint
     - Summary stats by county for the entire period (2013-2019)
 
 ## Project Artifacts
-The project files are organized into the following folders:
-- California-Wildfires
-    
-- several Javascript filel in  (app.js)
-- an HTML file (index.html)
-- the state data (state_stats.csv)
-- Bootstrap, CSS, and Jquery files.
-
-All of the resources used to produce the dataset are in the Resources folder - including COVID_Data_Prep.ipynb
+Key project files are organized into the following folders:
+- California-Wildfires: dashboard homepage (index.html)
+- California-Wildfires/Project Docs
+- California-Wildfires/assets: html files for map and analysis pages
+- California-Wildfires/static
+- California-Wildfires/static/js: javascript files for map and analysis pages
+- California-Wildfires/static/img: homepage image and map icons
+- California-Wildfires/static/data: GeoJSON wildfire incidents file
+- California-Wildfires/static/css: css file for all html pages
 
 ## Getting Started
 
-To run this application simply launch the index.html file using live server or visit the hosted version [here](https://mthorpester.github.io/D3-Challenge/D3_data_journalism/main.html "My Interactive D3 Scatter plot").
+To run this application simply launch the index.html file using live server or visit the hosted version [here](https://mthorpester.github.io/California-Wildfires/ "California Wildfire Dashboard").
 
 
-## Part I: Exploratory Climate Analysis
-This part of the project analyzes Hawaii precipitation and weather station data, and produces visualizations of rainfall and temperature patterns. It also supports the planning of visits to Hawaii with:
-- local precipitation summaries for each of the local weather stations and
-- temperature dailies for a flexible range of trip dates.
-
-It consists of:
-- a SQLite database (Resources/Hawaii.sqlite)
-- a Jupyter notebook (sqlalchemy-challenge/climate_analysis.ipnyb) that uses SQLAlchemy, Python Pandas and MatPlotlib to analyze and visualize this data.
-- Bar charts, a histogram and an area chart that are visible within the notebook and also stored as .png files in the sqlalchemy-challenge folder.
-
-## Part II: Climate App
-This part of the project surfaces several SQLAlchemy precipitation and temperature queries in an API using a Python Flask app:
-- / 
-    - Home page
-- /api/v1.0/precipitation
-    - Daily precipitation totals for last year
-- /api/v1.0/stations
-    - Active weather stations
-- /api/v1.0/tobs
-    - Daily temperature observations for the WAIHEE weather station
-- /api/v1.0/trip/yyyy-mm-dd
-    - Min, average & max temperatures for the range beginning with the provided start date through 08/23/17
-- /api/v1.0/trip/yyyy-mm-dd/yyyy-mm-dd
-    - Min, average & max temperatures for the range beginning with the provided start - end date range
-
-It consists of:
-- a SQLite database (Resources/Hawaii.sqlite)
-- a Flask app (sqlalchemy-challenge/app.py).
