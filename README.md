@@ -9,17 +9,17 @@ We set out to answer this question by creating a dashboard to analyze and visual
 **Findings**: Based on analysis using this dashboard the project concluded that California wildfires have indeed become more frequent and more destructive, although we would need additional data to determine whether, in fact, they have become larger. 
 
 ## Data Sources
-The key dataset used was a CSV file that was originally scraped from htps://www.fire.ca.gov:
+The key dataset used was a CSV file containing wildfire incidents from 2013-2019 that was originally scraped from https://www.fire.ca.gov:
 -  https://www.kaggle.com/ananthu017/california-wildfire-incidents-20132020 <br>
 
-In addition, a CSV dataset covering percentages of California in different levels of drought status from 2000-2021 was utilized:
+In addition, a CSV dataset covering percentages of California in different levels of drought status from 2000-2021 was explored:
 - https://droughtmonitor.unl.edu/Data/DataTables.aspx <br>
 
 
 ## Dashboard
 The dashboard enables users to explore California wildfire incident data from 2013-2019 using several visualizations:
 - **Wildfire Summary** stats are rolled up for all of California, or for specific counties, including the total number of fires, total acres burned, total structures destroyed, total structures damaged, and total fatalities. 
-- the **Wildfire Map** view displays wildfire incidents by location. Individual years can be toggled on and off, and the wildfires are displayed using different icons based on the size of the fire.
+- the **Wildfire Map** view displays wildfire incidents by location. Individual years can be toggled on and off, and the wildfires are displayed using different colored icons based on the size of the fire.
 - the **Wildfire Incidents by Year** chart displays the number of wildfires by year, categorized by size of the fire (small, medium, large). It can be viewed for all of California or for individual counties.
 - the **Average Acres Burned per Wildfire** chart and the **Acres Burned by Year** chart display the average size of wildfires for each year and the total acres burned per year. They can be viewed for all of California or for individual counties.
 - the **Destruction Metrics by Year** chart displays the numbers of fatalities, structures damaged and destroyed by year. It can be viewed for all of California or for individual counties.
