@@ -27,8 +27,8 @@ function init() {
   var selection = d3.select("#selDataset"); 
   
   //API URL 
-  var base_url = 'https://35.193.188.227:8080/';
-   
+  var base_url = 'https://35.193.188.227/';
+    
  //Nested calls to API to grab wildfile data at different levels of granularity
  //Last nested API call build chart to assure all data gathered before BuildChart called.
  d3.json(base_url + "county_codes").then((results => {
