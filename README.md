@@ -34,8 +34,6 @@ Several different PostgreSQL views are exposed by the NodeJS app as API endpoint
     - Returns the county code along with the name of the county for all counties in California.
 - /yearly_stats_detail
     - Returns summary stats for each county for each year, including All California (county_code = 0). 
-- /yearly_stats_county/:county
-    - <span style="color:red">Is this working or just an experiment???????????</span>.
 - /yearly_stats_incident_level
     - Summary records based on incident level (Small, Medium, Large) for each county (and all CA) for each year. 
 - /overall_stats
