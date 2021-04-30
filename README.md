@@ -1,6 +1,6 @@
 # California-Wildfires
 **Have California wildfires become larger, more frequent and more destructive in recent years?**
-We set out to answer this question by creating a dashboard to analyze and visualize historical California wildfire data and identify trends. The dashboard can be accessed [here](https://mthorpester.github.io/California-Wildfires/ "California Wildfire Dashboard").<br>This project uses:
+We set out to answer this question by creating a dashboard to analyze and visualize historical California wildfire data and identify trends. The dashboard can be accessed [here](http://35.193.188.227/ "California Wildfire Dashboard").<br>This project uses:
 - [csv2json](https://github.com/mapbox/csv2geojson/  "csv2json GitHub repo") and PostgreSQL to extract, transform and load Wildfire Incident data,
 - PostgreSQL and NodeJS on the Google Cloud to serve up an API for querying the Wildfire Incident data, and 
 - Plotly, Leafly, Bootstrap, Javascript, HTML and CSS to create the interactive dashboard. 
@@ -46,6 +46,7 @@ Key project files are organized into the following folders:
 - California-Wildfires: dashboard homepage (index.html)
 - California-Wildfires/Project Docs
 - California-Wildfires/assets: html files for map and analysis pages
+- California-Wildfires/db_assets: files for ETL queries and the nodeJS app
 - California-Wildfires/static
 - California-Wildfires/static/js: javascript files for map and analysis pages
 - California-Wildfires/static/img: homepage image and map icons
@@ -54,6 +55,6 @@ Key project files are organized into the following folders:
 
 ## Getting Started
 
-To run this application simply launch the index.html file using live server or visit the hosted version [here](https://mthorpester.github.io/California-Wildfires/ "California Wildfire Dashboard").
+To run this application simply launch the index.html file using live server or visit the hosted version [here](http://35.193.188.227/ "California Wildfire Dashboard").
 
 
