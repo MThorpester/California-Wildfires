@@ -88,7 +88,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     //.range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33"])
     .range(["#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"])
 
-    // Normalize the data -> sum of each group must be 100!
+    // Percentages; Normalize the data -> sum of each group must be 100!
     dataNormalized = []
     data.forEach(function(d){
         // Compute the total
@@ -99,7 +99,6 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     })
 
     //Display chart + bars
-        // axis'
         // x axis
         svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -115,7 +114,8 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
             .selectAll("g")
             // Enter in the stack data = loop key per key = group per group
                 .data(stackedData)
-                .enter().append("g")
+                .enter()
+                .append("g")
                 .attr("fill", function(d) { return color(d.key); })
                 .selectAll("rect")
                 // enter a second time = loop subgroup per subgroup to add all rectangles
