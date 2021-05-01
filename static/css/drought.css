@@ -19,7 +19,12 @@
 body {
   height: 100%;
   padding-top: 60px; /* Added padding so navbar doesn't cut off selection tool */
-  margin: 0;
+  margin: 0px;
+  margin-left: 110px;
+  margin-top: 80px;
 }
+
+
+
 
 

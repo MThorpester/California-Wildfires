@@ -8,23 +8,24 @@
   <title>Wildfire Trend Analysis</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Additional custom styling -->
-  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- <link rel="stylesheet" href="static/css/styles.css"> -->
+  <link rel="stylesheet" href="../static/css/drought.css">
 </head>
 
 <body>
   <header>
     <!-- Fixed navbar - removed navbar-dark -->
     <nav class="navbar navbar-expand-md fixed-top bg-dark navbar-custom">
-      <a class="navbar-brand navbar-custom navbar-text" href="../index.html"><b>California Wildfires </b><span class="sr-only">(current)</span></a>
+      <a class="navbar-brand navbar-custom navbar-text active" href="#"><b>California Wildfires </b><span class="sr-only">(current)</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link navbar-custom" href="wfmap.html">Wildfire Map</a>
+            <a class="nav-link" href="wfmap.html">Wildfire Map</a>
           </li>
-          <li class="nav-item navbar-custom active">
+          <li class="nav-item">
             <a class="nav-link" href="wfanalysis.html">Wildfire Analysis</a>
           </li>
           <li class="nav-item">
@@ -39,41 +40,17 @@
     </nav>
   </header>
   <div class="container-fluid">
-      <div class="row">
-      <div class="col-md-2">
-        <div class="card mb-4">
-          <div class="card-header text-center header-font text-light mycard-bg display-6">California Counties</div>
-          <div class="card-body p-2 text-center bg-light">
-            <select id="selDataset" onchange="optionChanged(this.value)"></select>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header text-center header-font text-light mycard-bg">Wildfire Summary</div>
-          <div class="card-body p-2 bg-light" id="sample-metadata"></div>
-        </div>
-      </div>
-      <div class="col-md-10">
-        <div id="stackbar"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div id="bar"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="bar-avg"></div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
-        <div id="cluster"></div>
+        <div id="bar"></div>
       </div>
     </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="../static/js/wildfire_trend.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  
+  <script src="../static/js/drought_v2.js"></script>
   
 </body>
 
