@@ -90,13 +90,16 @@ function BuildCharts(id) {
     var fatalities = [];
     var structures_destroyed = [];
     var structures_damaged = [];
+
     var years_small = [];
     var acres_burned_pct_increase = [];
     var incidents_small = [];
     var incident_small_pct_increase = []
+
     var years_medium = [];
     var incidents_medium= [];
     var incident_medium_pct_increase = []
+    
     var years_large = [];
     var incidents_large = [];
     var incident_large_pct_increase = [];
