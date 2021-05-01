@@ -1,7 +1,7 @@
 //svg dimensions
 var margin = {top:100, right:700, bottom:150, left:600},
-    width = 800,
-    height = 500 
+    width = 1000,
+    height = 600 
 
 //append svg object to the body of the page
 var svg=d3.select("#bar")
@@ -16,7 +16,6 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
 
     //print out data
  
-
     //None, D0-D4; turn objects -> strings
     // data.forEach(d =>{
     //     d.D0_sum = +d.D0_sum;});
@@ -73,9 +72,9 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     });    
     var Years = d3.map(data, function(d){return(d.Years)}).keys();
     
-    console.log(Years)
-    console.log(D4)
-    console.log(D1)
+    // console.log(Years)
+    // console.log(D4)
+    // console.log(D1)
 
    //Stacked Bar Chart Configuration
    var trace_none = {
@@ -84,7 +83,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text:incident_small_pct_increase,
     name: "None",
     type: "bar",
-    marker: {color: "#ffb727"}
+    marker: {color: "#008000"}
   };
 
   var trace_D0 = {
@@ -102,7 +101,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D1",
     type: "bar",
-    marker: {color: "#88001b"}
+    marker: {color: "#808000"}
   };     
 
   var trace_D1 = {
@@ -111,7 +110,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D1",
     type: "bar",
-    marker: {color: "#fffedf"}
+    marker: {color: "#F0E68C"}
   };     
 
   var trace_D2 = {
@@ -120,7 +119,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D2",
     type: "bar",
-    marker: {color: "#fffcd8"}
+    marker: {color: "#FFD700"}
   };     
 
   var trace_D3 = {
@@ -129,7 +128,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D3",
     type: "bar",
-    marker: {color: "#fffcd4"}
+    marker: {color: "#B22222"}
   };  
   
   var trace_D4 = {
@@ -138,7 +137,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D4",
     type: "bar",
-    marker: {color: "#88001b"}
+    marker: {color: "#8B0000"}
   };  
 
   var data_stack = [trace_none,trace_D0,trace_D1,trace_D2,trace_D3,trace_D4];
