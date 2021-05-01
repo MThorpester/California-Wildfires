@@ -92,25 +92,25 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text:incident_medium_pct_increase,
     name: "D0",
     type: "bar",
-    marker: {color: "#ff7f27"}
-  };     
-
-  var trace_D1 = {
-    x: Years,
-    y: D1,
-    // text: incident_large_pct_increase,
-    name: "D1",
-    type: "bar",
-    marker: {color: "#808000"}
-  };     
-
-  var trace_D1 = {
-    x: Years,
-    y: D1,
-    // text: incident_large_pct_increase,
-    name: "D1",
-    type: "bar",
     marker: {color: "#F0E68C"}
+  };     
+
+  // var trace_D1 = {
+  //   x: Years,
+  //   y: D1,
+  //   // text: incident_large_pct_increase,
+  //   name: "D1",
+  //   type: "bar",
+  //   marker: {color: "#B0C4DE"}
+  // };     
+
+  var trace_D1 = {
+    x: Years,
+    y: D1,
+    // text: incident_large_pct_increase,
+    name: "D1",
+    type: "bar",
+    marker: {color: "#FFD700"}
   };     
 
   var trace_D2 = {
@@ -119,7 +119,7 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     // text: incident_large_pct_increase,
     name: "D2",
     type: "bar",
-    marker: {color: "#FFD700"}
+    marker: {color: "#ff7f27"}
   };     
 
   var trace_D3 = {
