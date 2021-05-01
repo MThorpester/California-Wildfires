@@ -194,6 +194,8 @@ function BuildCharts(id) {
         y:acres_burned,
         type:"scatter",
         text:acres_burned_increase_rate,
+        hovertemplate:  '<br><b>%Increase</b><br>' +
+                        '<b>%{text}</b>',
         name:"%Year Increase/Decrease"
     };
 
@@ -217,7 +219,7 @@ function BuildCharts(id) {
 
 
     var layout_avg_bar = {
-      title: "Average Acres Burned By Year",
+      title: "Average Acres Burned per Wildfire",
       xaxis: { title: "Year",
                type:"Category" },
       yaxis: { title: "Average Acres Burned",

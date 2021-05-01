@@ -86,7 +86,8 @@ d3.csv("cali_drought.csv").then((data)=>{droughtData = data;
     var color = d3.scaleOrdinal()
     .domain(subgroups)
     //.range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33"])
-    .range(["#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"])
+    //.range(["#7fc97f","#beaed4","#fdc086","#ffff99","#386cb0","#f0027f","#bf5b17","#666666"])
+    .range(["#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00","#ffff33","#a65628","#f781bf","#999999"])
 
     // Percentages; Normalize the data -> sum of each group must be 100!
     dataNormalized = []

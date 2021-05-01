@@ -1,0 +1,58 @@
+/* change the navbar homepage (brand) text color */
+.navbar-custom .navbar-text {
+  color: rgb(238, 76, 12);
+}
+
+/* change the navbar link text color */
+.navbar-custom .navbar-nav .nav-link {
+  
+  color: #f1b309;
+}
+/* change the color of active or hovered links in the navbar */
+.navbar-custom .active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: rgb(250, 56, 8);
+}
+/* Styling for summary card on Wildfire Analysis page */
+.mycard-bg {
+  background-color: #e67300
+}
+.card .card-header {
+  font-size: 15px;
+  font-weight: bold;
+}
+.details-text {
+  font-size: 12px;
+}
+body {
+  height: 100%;
+  padding-top: 60px; /* Added padding so navbar doesn't cut off map */
+  margin: 0;
+}
+
+html,
+#map-id {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Commented out because this is set in the javascript code that builds the map legend
+/* .icon {
+  font-size: 25px;
+} */
+
+/* Styling for the Wildfire Map legend */
+.legend {
+  padding: 10px;
+  /* font-family: Ubuntu, serif; */
+  /* font-family: Sanchez, serif; */
+  font-size: 12px;
+  /* font-weight: bold; */
+  line-height: 16px;
+  color: rgb(12, 1, 1);
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
