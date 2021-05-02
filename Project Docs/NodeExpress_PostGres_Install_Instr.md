@@ -8,6 +8,8 @@
 `$ npm install body.parser`
 4. Install Node-Postgres for Postgress Connectivity
 `$ npm install pg`
+5. Install package that will Daemonize Node.JS application, so application will run in background.
+`$ npm install pm2`
 
 
 ##Reference 
