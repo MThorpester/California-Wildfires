@@ -3,7 +3,7 @@
 We set out to answer this question by creating a dashboard to analyze and visualize historical California wildfire data and identify trends. The dashboard can be accessed [here](http://35.193.188.227/ "California Wildfire Dashboard").<br>This project uses:
 - [csv2json](https://github.com/mapbox/csv2geojson/  "csv2json GitHub repo") and PostgreSQL to extract, transform and load Wildfire Incident data,
 - PostgreSQL and NodeJS on the Google Cloud to serve up an API for querying the Wildfire Incident data, and 
-- Plotly, Leafly, Bootstrap, Javascript, HTML and CSS to create the interactive dashboard. 
+- Plotly, Leaflet, Bootstrap, Javascript, HTML and CSS to create the interactive dashboard. 
  
 
 **Findings**: Based on analysis using this dashboard the project concluded that California wildfires have indeed become more frequent and more destructive, although we would need additional data to determine whether, in fact, they have become larger. 
